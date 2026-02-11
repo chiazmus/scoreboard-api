@@ -5,7 +5,7 @@
     "description": "This is a simple Scoreboard API for developers looking to make an easy scoreboard system for their games.",
     "version": "1.0.0"
   },
-  "host": "https://scoreboard-api-94dv.onrender.com",
+  "host": "scoreboard-api-94dv.onrender.com",
   "basePath": "/",
   "schemes": [
     "https",
