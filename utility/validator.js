@@ -4,19 +4,29 @@ const ObjectId = require("mongodb").ObjectId;
 
 const ScoreValidationRules = () => {
   return [
-    // make sure the category is actually a valid mongoId
-    body("userId")
+    body("gameId")
       .isMongoId()
-      .withMessage("Make sure to put in an existing Category ID plz"),
+      .withMessage("Make sure to put in an existing Game ID plz"),
     // makes sure the score is numeric.
     body("score").isNumeric(),
   ];
 };
 
-const UserValidationRules = () => {
+const GameValidationRules = () => {
   return [
-    // makes sure the password is at least 8 characters long.
-    body("password").isLength({ min: 8 }).withMessage("Password must be at least 8 characters long."),
+    body("userId")
+      .isMongoId()
+      .withMessage("Make sure to put in an existing User ID plz"),
+    body("gameName").isLength({ min: 5}).withMessage("The gameName must have at least 5 characters"),
+  ];
+};
+
+const AcheivementValidationRules = () => {
+  return [
+    body("gameId")
+      .isMongoId()
+      .withMessage("Make sure to put in an existing Game ID plz"),
+    body("name").isLength({ min: 5}).withMessage("The name must have at least 5 characters"),
   ];
 };
 
@@ -35,6 +45,7 @@ const validate = (req, res, next) => {
 
 module.exports = {
   ScoreValidationRules,
-  UserValidationRules,
+  GameValidationRules,
+  AcheivementValidationRules,
   validate,
 };

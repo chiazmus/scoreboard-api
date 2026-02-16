@@ -33,6 +33,19 @@ const getSingle = async (req, res) => {
   }
 };
 
+const getByUsername = async (userName) => {
+  //#swagger.tags=['Users']
+  try {
+    const result = await Users.findByUsername(userName);
+    if (!result) {
+      return null;
+    }
+    return result;
+  } catch (err) {
+    console.log(`There was an error... ${err}`)
+  }
+};
+
 const deleteSingle = async (req, res) => {
     //#swagger.tags=['Users']
     try {
@@ -55,7 +68,6 @@ const updateUser = async(req, res) => {
     try {
         const updatedUser = { 
             userName: req.body.username, 
-            password: req.body.password,
             isAdmin: req.body.isAdmin || "false"
         };
         response = await Users.update(req.params.id, updatedUser);
@@ -76,8 +88,7 @@ const createUser = async(req, res) => {
     //#swagger.tags=['Users']
     try {
         const newUser = { 
-            userName: req.body.username,
-            password: req.body.password, 
+            userName: req.body.username, 
             isAdmin: req.body.isAdmin || "false"
             };
         response = await Users.create(newUser);
@@ -94,4 +105,15 @@ const createUser = async(req, res) => {
     }
 }
 
-module.exports = {getAll, deleteSingle, getSingle, updateUser, createUser};
+const createUserInternal = async(newUser) => {
+    //#swagger.tags=['Users']
+    try {
+        response = await Users.create(newUser);
+        if (response.acknowledged) return true;
+        else return false;
+    } catch (err) {
+      console.log(err);
+    }
+}
+
+module.exports = {getAll, deleteSingle, getSingle, updateUser, createUser, getByUsername, createUserInternal};

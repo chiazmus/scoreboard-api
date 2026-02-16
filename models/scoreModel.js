@@ -8,8 +8,8 @@ const Score = {
     return await result.toArray();
   },
 
-  async findByUserId(id) {
-    const result = await mongodb.getDatabase().db().collection("Scores").find({ "userId": id });
+  async findByGameId(id) {
+    const result = await mongodb.getDatabase().db().collection("Scores").find({ "gameId": id });
 
     return await result.toArray();    
   },

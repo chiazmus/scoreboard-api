@@ -20,6 +20,16 @@ const User = {
     return await result.toArray();
   },
 
+  async findByUsername(userName) {
+  const result = await mongodb
+    .getDatabase()
+    .db()
+    .collection("Users")
+    .find({ "userName": userName });
+
+  return await result.toArray();
+  },
+
   async remove(id) {
     const UserId = new ObjectId(id);
 

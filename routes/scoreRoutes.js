@@ -4,7 +4,7 @@ const scoreController = require("../controllers/scoreController");
 
 router.get("/", scoreController.getAll);
 
-router.get("/:id", scoreController.getByUser);
+router.get("/:id", scoreController.getByGame);
 
 router.get("/single/:id", scoreController.getSingle);
 

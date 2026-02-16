@@ -5,11 +5,11 @@
     "description": "This is a simple Scoreboard API for developers looking to make an easy scoreboard system for their games.",
     "version": "1.0.0"
   },
-  "host": "scoreboard-api-94dv.onrender.com",
+  "host": "localhost:3000",
   "basePath": "/",
   "schemes": [
-    "https",
-    "http"
+    "http",
+    "https"
   ],
   "paths": {
     "/api-docs": {
@@ -27,7 +27,7 @@
         "tags": [
           "Users"
         ],
-        "description": "Returns all users.",
+        "description": "",
         "produces": [
           "application/json"
         ],
@@ -44,7 +44,7 @@
         "tags": [
           "Users"
         ],
-        "description": "Creates a new user.",
+        "description": "",
         "parameters": [
           {
             "name": "body",
@@ -53,13 +53,10 @@
               "type": "object",
               "properties": {
                 "username": {
-                  "example": "bobross"
-                },
-                "password": {
-                  "example": "1like2paint"
+                  "example": "any"
                 },
                 "isAdmin": {
-                  "example": "false"
+                  "example": "any"
                 }
               }
             }
@@ -86,7 +83,7 @@
         "tags": [
           "Users"
         ],
-        "description": "Gets a user based upon the Id.",
+        "description": "",
         "produces": [
           "application/json"
         ],
@@ -114,7 +111,7 @@
         "tags": [
           "Users"
         ],
-        "description": "Changes the details of a user, given their userId.",
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -129,13 +126,10 @@
               "type": "object",
               "properties": {
                 "username": {
-                  "example": "bobross"
-                },
-                "password": {
-                  "example": "1like2paint"
+                  "example": "any"
                 },
                 "isAdmin": {
-                  "example": "false"
+                  "example": "any"
                 }
               }
             }
@@ -160,7 +154,7 @@
         "tags": [
           "Users"
         ],
-        "description": "Removes a user given the userId.",
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -187,7 +181,7 @@
         "tags": [
           "Scores"
         ],
-        "description": "Returns all score objects.",
+        "description": "",
         "produces": [
           "application/json"
         ],
@@ -204,7 +198,7 @@
         "tags": [
           "Scores"
         ],
-        "description": "Creates a score object.  Must be attatched to a valid user object.",
+        "description": "",
         "parameters": [
           {
             "name": "body",
@@ -213,13 +207,13 @@
               "type": "object",
               "properties": {
                 "playerName": {
-                  "example": "inigomantoya"
+                  "example": "any"
                 },
                 "score": {
-                  "example": "1000"
+                  "example": "any"
                 },
-                "userId": {
-                  "example": ""
+                "gameId": {
+                  "example": "any"
                 }
               }
             }
@@ -246,7 +240,7 @@
         "tags": [
           "Scores"
         ],
-        "description": "Gets all of the score objects attatched to a userId.  This is the endpoint that will be most commonly used.",
+        "description": "",
         "produces": [
           "application/json"
         ],
@@ -271,7 +265,7 @@
         "tags": [
           "Scores"
         ],
-        "description": "Changes a score based on scoreId.",
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -286,12 +280,12 @@
               "type": "object",
               "properties": {
                 "playerName": {
-                  "example": "inigomantoya"
+                  "example": "any"
                 },
                 "score": {
-                  "example": "2000"
+                  "example": "any"
                 },
-                "userId": {
+                "gameId": {
                   "example": "any"
                 }
               }
@@ -317,7 +311,7 @@
         "tags": [
           "Scores"
         ],
-        "description": "Removes a score based on scoreId.",
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -344,7 +338,7 @@
         "tags": [
           "Scores"
         ],
-        "description": "Returns a single score given scoreId.",
+        "description": "",
         "produces": [
           "application/json"
         ],
@@ -362,6 +356,320 @@
           },
           "404": {
             "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/games/": {
+      "get": {
+        "tags": [
+          "Games"
+        ],
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Games"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "gameName": {
+                  "example": "any"
+                },
+                "gameDescription": {
+                  "example": "any"
+                },
+                "userId": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/games/{id}": {
+      "get": {
+        "tags": [
+          "Games"
+        ],
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Games"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "gameName": {
+                  "example": "any"
+                },
+                "gameDescription": {
+                  "example": "any"
+                },
+                "userId": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Games"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/achievements/": {
+      "get": {
+        "tags": [
+          "Acheivements"
+        ],
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Acheivements"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "any"
+                },
+                "gameId": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/achievements/{id}": {
+      "get": {
+        "tags": [
+          "Acheivements"
+        ],
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Acheivements"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "any"
+                },
+                "gameId": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Acheivements"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "500": {
             "description": "Internal Server Error"

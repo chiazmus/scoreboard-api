@@ -5,8 +5,8 @@ const doc = {
     title: "Scoreboard API",
     description: "This is a simple Scoreboard API for developers looking to make an easy scoreboard system for their games.",
   },
-  host: "scoreboard-api-94dv.onrender.com",
-  schemes: ["https", "http"],
+  host: "localhost:3000",
+  schemes: ["http", "https"],
 };
 
 const outputFile = "./swagger.json";

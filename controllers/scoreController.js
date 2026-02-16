@@ -14,10 +14,10 @@ const getAll = async (req, res) => {
   }
 };
 
-const getByUser = async (req, res) => {
+const getByGame = async (req, res) => {
   //#swagger.tags=['Scores']
   try {
-    const Scores = await Score.findByUserId(req.params.id);
+    const Scores = await Score.findByGameId(req.params.id);
     
     res.setHeader("Content-Type", "application/json");
     res.status(200).json(Scores);
@@ -70,7 +70,7 @@ const updateScore = async(req, res) => {
         const updatedScore = { 
             playerName: req.body.playerName,
             score: req.body.score, 
-            userId: req.body.userId
+            gameId: req.body.gameId
             };
         response = await Score.update(req.params.id, updatedScore);
         if (response.modifiedCount > 0) res.status(201).send();
@@ -92,7 +92,7 @@ const createScore = async(req, res) => {
         const newScore = { 
             playerName: req.body.playerName,
             score: req.body.score, 
-            userId: req.body.userId
+            gameId: req.body.gameId
             };
         response = await Score.create(newScore);
         if (response.acknowledged) res.status(201).send();
@@ -108,4 +108,4 @@ const createScore = async(req, res) => {
     }
 }
 
-module.exports = {getAll, deleteSingle, getSingle, updateScore, createScore, getByUser};
+module.exports = {getAll, deleteSingle, getSingle, updateScore, createScore, getByGame};

@@ -1,15 +1,15 @@
 const router = require("express").Router();
 const userController = require("../controllers/userController");
-const { UserValidationRules, validate } = require('../utility/validator');
+const {isAdmin} = require('../utility/authenticate.js');
 
-router.get("/", userController.getAll);
+router.get("/", isAdmin, userController.getAll);
 
-router.get("/:id", userController.getSingle);
+router.get("/:id", isAdmin, userController.getSingle);
 
-router.post("/", UserValidationRules(), validate, userController.createUser);
+router.post("/", isAdmin, userController.createUser);
 
-router.put("/:id", UserValidationRules(), validate, userController.updateUser);
+router.put("/:id", isAdmin, userController.updateUser);
 
-router.delete("/:id", userController.deleteSingle);
+router.delete("/:id", isAdmin, userController.deleteSingle);
 
 module.exports = router;
