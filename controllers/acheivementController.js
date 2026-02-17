@@ -39,7 +39,7 @@ const achievementAccessCheck = async (req, res, acheivementId) => {
     return res.status(404).json({ message: "Acheivement not found" });
   }
 
-  accessCheck(req, res, req.params.id);
+  accessCheck(req, res, result[0].gameId);
 };
 
 const deleteSingle = async (req, res) => {

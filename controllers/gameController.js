@@ -39,7 +39,7 @@ const accessCheck = async (req, res, gameId) => {
   if (!game) {
     return res.status(404).json({ message: "Game not found" });
   }
-  if (game.userId != req.session.user.userId) {
+  if (game[0].userId != req.session.user.userId) {
     return res.status(401).json("Access Denied");
   }
 };

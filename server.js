@@ -67,9 +67,10 @@ app.get('/github/callback', passport.authenticate('github', {
       userDetails = getByUsername(username);
       req.session.user.isAdmin = false;
     } else {
-      req.session.user.isAdmin = Boolean(userDetails.isAdmin);
+      console.log('existing');
+      req.session.user.isAdmin = userDetails[0].isAdmin === "true";
     }
-    req.session.user.userId = userDetails._id;
+    req.session.user.userId = userDetails[0]._id?.toString();
     res.redirect('/');
 });
 

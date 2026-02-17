@@ -3,10 +3,18 @@ const swaggerAuto = require("swagger-autogen")();
 const doc = {
   info: {
     title: "Scoreboard API",
-    description: "This is a simple Scoreboard API for developers looking to make an easy scoreboard system for their games.",
+    description: "Simple Scoreboard API...",
   },
-  host: "localhost:3000",
-  schemes: ["http", "https"],
+  host: "scoreboard-api-94dv.onrender.com",
+  schemes: ["https", "http"],
+  securityDefinitions: {
+    ApiKeyAuth: {
+      type: 'apiKey',
+      in: 'header',
+      name: 'X-API-KEY',
+    },
+  },
+  security: [{ ApiKeyAuth: [] }], 
 };
 
 const outputFile = "./swagger.json";
