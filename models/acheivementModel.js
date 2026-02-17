@@ -3,7 +3,7 @@ const ObjectId = require("mongodb").ObjectId;
 
 const Acheivement = {
   async findAll(id) {
-    const result = await mongodb.getDatabase().db().collection("Acheivements").find({ "gameId": gameid });
+    const result = await mongodb.getDatabase().db().collection("Acheivements").find({ "gameId": id });
 
     return await result.toArray();
   },
