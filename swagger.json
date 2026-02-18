@@ -575,18 +575,29 @@
         }
       }
     },
-    "/achievements/": {
+    "/achievements/all/{id}": {
       "get": {
         "tags": [
           "Acheivements"
         ],
-        "description": "Retrieves all acheivements by game Id.",
+        "description": "Gets all acheivements by game ID.",
         "produces": [
           "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -634,7 +645,7 @@
         }
       }
     },
-    "/achievements/{id}": {
+    "/achievements/single/{id}": {
       "get": {
         "tags": [
           "Acheivements"

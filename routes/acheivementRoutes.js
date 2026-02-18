@@ -3,9 +3,9 @@ const acheivementController = require("../controllers/acheivementController");
 const { AcheivementValidationRules, validate } = require('../utility/validator');
 const {isAuthenticated} = require('../utility/authenticate.js');
 
-router.get("/", acheivementController.getAll);
+router.get("/all/:id", acheivementController.getAll);
 
-router.get("/:id", acheivementController.getSingle);
+router.get("/single/:id", acheivementController.getSingle);
 
 router.post("/", isAuthenticated, AcheivementValidationRules(), validate, acheivementController.createAcheivement);
 

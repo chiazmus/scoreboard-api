@@ -4,7 +4,7 @@ const { accessCheck } = require("./gameController");
 const getAll = async (req, res) => {
   //#swagger.tags=['Acheivements']
   try {
-    const allAcheivements = await Acheivements.findAll();
+    const allAcheivements = await Acheivements.findAll(req.params.id);
 
     res.setHeader("Content-Type", "application/json");
     res.status(200).json(allAcheivements);
