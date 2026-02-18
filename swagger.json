@@ -21,10 +21,10 @@
   "paths": {
     "/api-docs": {
       "get": {
-        "description": "API doumentation and testing",
+        "description": "Retrieve the Swagger UI documentation files.",
         "responses": {
           "default": {
-            "description": ""
+            "description": "Success"
           }
         }
       }
@@ -34,7 +34,7 @@
         "tags": [
           "Users"
         ],
-        "description": "Returns all users",
+        "description": "Get a list of all registered users.",
         "produces": [
           "application/json"
         ],
@@ -54,7 +54,7 @@
         "tags": [
           "Users"
         ],
-        "description": "Creates a new user.  Only an admin may do this.",
+        "description": "Register a new user in the system.",
         "parameters": [
           {
             "name": "body",
@@ -93,7 +93,7 @@
         "tags": [
           "Users"
         ],
-        "description": "Retrieves a specific user by ID.",
+        "description": "Retrieve specific user details by ID.",
         "produces": [
           "application/json"
         ],
@@ -124,7 +124,7 @@
         "tags": [
           "Users"
         ],
-        "description": "Changes a user by ID.  Only an Admin may do this.",
+        "description": "Update user information for a specific ID.",
         "parameters": [
           {
             "name": "id",
@@ -167,7 +167,7 @@
         "tags": [
           "Users"
         ],
-        "description": "Deletes a user by ID.  Only an admin may do this.",
+        "description": "Remove a user from the database by ID.",
         "parameters": [
           {
             "name": "id",
@@ -197,7 +197,7 @@
         "tags": [
           "Scores"
         ],
-        "description": "Retrieves all scores.",
+        "description": "Get a list of all high scores.",
         "produces": [
           "application/json"
         ],
@@ -214,7 +214,7 @@
         "tags": [
           "Scores"
         ],
-        "description": "Creates a score for a given game.  Must use API Key to do this.",
+        "description": "Submit a new score entry for a game.",
         "parameters": [
           {
             "name": "body",
@@ -262,7 +262,7 @@
         "tags": [
           "Scores"
         ],
-        "description": "Retrieves a list of scores by game ID.  Must use API Key to do this.",
+        "description": "Fetch a specific score record by ID.",
         "produces": [
           "application/json"
         ],
@@ -293,7 +293,7 @@
         "tags": [
           "Scores"
         ],
-        "description": "Changes a score by Id.  Must use API key to do this.",
+        "description": "Update an existing score record by ID.",
         "parameters": [
           {
             "name": "id",
@@ -342,7 +342,7 @@
         "tags": [
           "Scores"
         ],
-        "description": "Deletes a score by ID.  Must use API key to do this.",
+        "description": "Delete a specific score record by ID.",
         "parameters": [
           {
             "name": "id",
@@ -375,7 +375,7 @@
         "tags": [
           "Scores"
         ],
-        "description": "Gets a score by ID.",
+        "description": "Retrieve a single score detail using its unique ID.",
         "produces": [
           "application/json"
         ],
@@ -405,7 +405,7 @@
         "tags": [
           "Games"
         ],
-        "description": "Retrieves all games by user Id.",
+        "description": "Retrieve a list of all games supported by the scoreboard.",
         "produces": [
           "application/json"
         ],
@@ -425,7 +425,7 @@
         "tags": [
           "Games"
         ],
-        "description": "Creates a new game.",
+        "description": "Add a new game to the system.",
         "parameters": [
           {
             "name": "body",
@@ -470,7 +470,7 @@
         "tags": [
           "Games"
         ],
-        "description": "Retrieves a game by ID.",
+        "description": "Fetch details of a specific game by ID.",
         "produces": [
           "application/json"
         ],
@@ -501,7 +501,7 @@
         "tags": [
           "Games"
         ],
-        "description": "Changes a game by ID.",
+        "description": "Update details for a specific game by ID.",
         "parameters": [
           {
             "name": "id",
@@ -550,7 +550,7 @@
         "tags": [
           "Games"
         ],
-        "description": "Deletes a game by ID.",
+        "description": "Delete a game from the system by ID.",
         "parameters": [
           {
             "name": "id",
@@ -580,7 +580,34 @@
         "tags": [
           "Acheivements"
         ],
-        "description": "Gets all acheivements by game ID.",
+        "description": "Get all achievements associated with a specific game ID.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/achievements/single/{id}": {
+      "get": {
+        "tags": [
+          "Acheivements"
+        ],
+        "description": "Fetch a specific achievement by its ID.",
         "produces": [
           "application/json"
         ],
@@ -603,12 +630,14 @@
             "description": "Internal Server Error"
           }
         }
-      },
+      }
+    },
+    "/achievements/": {
       "post": {
         "tags": [
           "Acheivements"
         ],
-        "description": "Creates an acheivement for a specific game.",
+        "description": "Create a new achievement for a game.",
         "parameters": [
           {
             "name": "body",
@@ -645,40 +674,12 @@
         }
       }
     },
-    "/achievements/single/{id}": {
-      "get": {
-        "tags": [
-          "Acheivements"
-        ],
-        "description": "Gets an acheivement by ID.",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
+    "/achievements/{id}": {
       "put": {
         "tags": [
           "Acheivements"
         ],
-        "description": "Changes an Acheivement by ID.",
+        "description": "Update an existing achievement's details by ID.",
         "parameters": [
           {
             "name": "id",
@@ -724,7 +725,7 @@
         "tags": [
           "Acheivements"
         ],
-        "description": "Removes an Acheivement by ID.",
+        "description": "Permanently delete an achievement by ID.",
         "parameters": [
           {
             "name": "id",
