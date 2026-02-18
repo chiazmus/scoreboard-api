@@ -5,7 +5,7 @@ const ObjectId = require("mongodb").ObjectId;
 const ScoreValidationRules = () => {
   return [
     body("gameId")
-      .isMongoId()
+      .isAlphanumeric()
       .withMessage("Make sure to put in an existing Game ID plz"),
     // makes sure the score is numeric.
     body("score").isNumeric(),
@@ -15,7 +15,7 @@ const ScoreValidationRules = () => {
 const GameValidationRules = () => {
   return [
     body("userId")
-      .isMongoId()
+      .isAlphanumeric()
       .withMessage("Make sure to put in an existing User ID plz"),
     body("gameName").isLength({ min: 5}).withMessage("The gameName must have at least 5 characters"),
   ];
@@ -24,7 +24,7 @@ const GameValidationRules = () => {
 const AcheivementValidationRules = () => {
   return [
     body("gameId")
-      .isMongoId()
+      .isAlphanumeric()
       .withMessage("Make sure to put in an existing Game ID plz"),
     body("name").isLength({ min: 5}).withMessage("The name must have at least 5 characters"),
   ];
